@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音MADer 地图</title>
+    <script>
+        "use strict";
+
+        class ProvinceCircleData {
+            constructor(left, top, name) {
+                this.left = left;
+                this.top = top;
+                this.name = name;
+
+                this.size = 10;
+                this.hometownUsers = [];
+                this.activeUsers = [];
+            }
+
+            addHTUser(user) {
+                let element = this.hometownUsers.findIndex(e => e.name == user.name);
+
+                if (element != -1) {
+                    this.hometownUsers.splice(element, 1);
+                }
+
+                this.hometownUsers.push(user);
+            }
+
+            addACUser(user) {
+                let element = this.activeUsers.findIndex(e => e.name == user.name);
+
+                if (element != -1) {
+                    this.activeUsers.splice(element, 1);
+                }
+
+                this.activeUsers.push(user);
+            }
+
+            length() {
+                return this.hometownUsers.length + this.activeUsers.length;
+            }
+        }
+
+        class ProvinceCircle {
+            constructor(parent, data) {
+                this.parent = parent;
+                this.data = data;
+
+                this.element = document.createElement("div");
+                this.element.className = "circle";
+
+                this.element.addEventListener('click', () => {
+                    ShowProvinceDetail(this.data);
+                });
+
+                this.updateView();
+
+                this.parent.appendChild(this.element);
+            }
+
+            updateView() {
+                this.setSize(10 + this.data.length() * 5);
+
+                this.element.style.left = `${this.data.left * 100}%`;
+                this.element.style.top = `${this.data.top * 100}%`;
+
+                this.element.style.width = `${this.data.size}px`;
+                this.element.style.height = `${this.data.size}px`;
+
+                this.element.style.backgroundColor = this.data.length() > 0 ? "#008bffa9" : "#efb962a9"
+            }
+
+            setSize(size) {
+                this.data.size = size;
+
+                return this;
+            }
+        }
+
+        class Position {
+            constructor(selection, level) {
+                let _selection = selection.split("-");
+                this.province = _selection[0];
+                this.city = level > 1 ? _selection[1] : undefined;
+                this.region = level > 2 ? _selection[2] : undefined;
+                this.level = level;
+            }
+
+            check(province) {
+                return province.name == this.province.name;
+            }
+
+            createElement() {
+                let _r = document.createElement("div");
+                _r.classList.add('user-position');
+                _r.innerText = this.province + (this.city ? `-${this.city}` : '') + (this.region ? `-${this.region}` : '');
+
+                return _r;
+            }
+        }
+
+        class User {
+            constructor(name, isAuthor, uid, hometownPosition, activePosition, note) {
+                this.name = name;
+                this.isAuthor = isAuthor;
+                this.uid = uid;
+                this.hometownPosition = hometownPosition;
+                this.activePosition = activePosition;
+                this.note = note;
+            }
+
+            createElement(typeNum) {
+                let _r = document.createElement('div');
+                _r.classList.add('user-card');
+                _r.classList.add(this.isAuthor ? 'user-author' : 'user-notAuthor')
+
+                let __username = document.createElement('div');
+                __username.classList.add('user-name');
+                __username.innerText = this.name;
+                _r.appendChild(__username);
+
+                let __positionDisplay = typeNum == 0 ? this.hometownPosition.createElement() : this.activePosition.createElement();
+                _r.appendChild(__positionDisplay);
+
+                return _r;
+            }
+        }
+
+        var users = [];
+        var circles = [
+            new ProvinceCircleData(0.600, 0.860, "广东"),
+            new ProvinceCircleData(0.590, 0.731, "湖南"),
+            new ProvinceCircleData(0.483, 0.771, "贵州"),
+            new ProvinceCircleData(0.507, 0.869, "广西"),
+            new ProvinceCircleData(0.410, 0.804, "云南"),
+            new ProvinceCircleData(0.545, 0.940, "海南"),
+            new ProvinceCircleData(0.641, 0.715, "江西"),
+            new ProvinceCircleData(0.227, 0.282, "新疆"),  // 稻米纳特 进入了直播间
+            new ProvinceCircleData(0.603, 0.883, "澳门"),
+            new ProvinceCircleData(0.615, 0.880, "香港"),
+            new ProvinceCircleData(0.701, 0.775, "福建"),
+            new ProvinceCircleData(0.742, 0.795, "台湾"),
+            new ProvinceCircleData(0.707, 0.664, "浙江"),
+            new ProvinceCircleData(0.480, 0.695, "重庆"),
+            new ProvinceCircleData(0.441, 0.665, "四川"),
+            new ProvinceCircleData(0.227, 0.656, "西藏"),
+            new ProvinceCircleData(0.607, 0.664, "湖北"),
+            new ProvinceCircleData(0.726, 0.640, "上海"),
+            new ProvinceCircleData(0.682, 0.627, "江苏"),
+            new ProvinceCircleData(0.657, 0.630, "安徽"),
+            new ProvinceCircleData(0.597, 0.562, "河南"),
+            new ProvinceCircleData(0.522, 0.575, "陕西"),
+            new ProvinceCircleData(0.442, 0.531, "甘肃"),
+            new ProvinceCircleData(0.409, 0.508, "青海"),
+            new ProvinceCircleData(0.482, 0.467, "宁夏"),
+            new ProvinceCircleData(0.562, 0.406, "内蒙古"),
+            new ProvinceCircleData(0.578, 0.480, "山西"),
+            new ProvinceCircleData(0.647, 0.510, "山东"),
+            new ProvinceCircleData(0.606, 0.477, "河北"),
+            new ProvinceCircleData(0.632, 0.424, "北京"),
+            new ProvinceCircleData(0.643, 0.441, "天津"),
+            new ProvinceCircleData(0.730, 0.360, "辽宁"),
+            new ProvinceCircleData(0.749, 0.302, "吉林"),
+            new ProvinceCircleData(0.758, 0.250, "黑龙江"),
+            new ProvinceCircleData(0.800, 0.500, "海外"),
+        ];
+
+        var elements = [];
+
+        var mapElement;
+
+        function _p(provinceName) {
+            return circles.find((v, i) => v.name == provinceName);
+        }
+
+        function updateView() {
+            elements.forEach(e => e.updateView());
+        }
+
+        window.addEventListener("load", () => {
+            mapElement = document.getElementById("circleContainer");
+
+            circles.forEach(circle => {
+                elements.push(new ProvinceCircle(mapElement, circle));
+            });
+
+            fetch("./content.xml", {
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            }).then(res => {
+                return res.text();
+            }).then(res => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(res, "application/xml");
+
+                let topRow = doc.querySelectorAll("Table Row")[0];
+                for (let i = 1; i < doc.querySelectorAll("Table Row").length; i++) {
+                    let _obj = {};
+
+                    for (let j = 0; j < topRow.children.length; j++) {
+                        _obj[topRow.children.item(j).textContent] = doc.querySelectorAll("Table Row").item(i).children.item(j).textContent;
+                    }
+
+                    let user = new User(
+                        _obj["1、那么，请问应该怎么称呼你呢？"],
+                        _obj["2、你主要是作者还是观众呢？"] == 1,
+                        _obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"],
+                        new Position(
+                            _obj["6、那么，你的家乡是哪里呢？"],
+                            _obj["4、你希望你的家乡的地区信息公开吗？"] == 2 ? 0 : _obj["5、你希望你的家乡的信息被公开到什么级别？"]
+                        ),
+                        new Position(
+                            _obj["9、那么，你目前在什么范围活动呢？"],
+                            _obj["7、你希望你目前的活动范围公开吗？"] == 2 ? 0 : _obj["8、你希望你的活动范围的信息被公开到什么级别？"]
+                        ),
+                        _obj["10、还有什么想说的吗？"] == "(空)" ? "" : _obj["10、还有什么想说的吗？"]
+                    );
+
+                    _p(user.hometownPosition.province)?.addHTUser(user);
+                    _p(user.activePosition.province)?.addACUser(user);
+                }
+
+                updateView();
+            });
+
+            document.getElementById("provinceDataMask").addEventListener("click", e => {
+                if (e.target.id == "provinceDataMask") {
+                    document.getElementById("provinceDataMask").hidden = 'hidden';
+                }
+            });
+        });
+
+        function LoadUsers(base, users, typeNum) {
+            while (base.children.length > 0) {
+                base.removeChild(base.children[0]);
+            }
+
+            if (users.length == 0) {
+                let _tmp = document.createElement("div");
+                _tmp.innerText = "无";
+
+                base.appendChild(_tmp);
+            }
+
+            users.forEach(user => {
+                base.appendChild(user.createElement(typeNum));
+            });
+        }
+
+        function ShowProvinceDetail(provinceData) {
+            document.getElementById("provinceDataMask").hidden = '';
+
+            document.getElementById("htProvName").innerText = provinceData.name;
+            document.getElementById("acProvName").innerText = provinceData.name;
+
+            let par1 = document.getElementById("htUserList");
+            LoadUsers(par1, provinceData.hometownUsers, 0);
+
+            let par2 = document.getElementById("acUserList");
+            LoadUsers(par2, provinceData.activeUsers, 1);
+        }
+    </script>
+
+    <style>
+        :root {
+            --margin: 40px;
+            --width: calc(100vw - 2 * var(--margin));
+            --height: calc(100vh - 2 * var(--margin));
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .centralMapContainer {
+            background-image: url("./map.jpg");
+            width: var(--width);
+            height: var(--height);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            margin: var(--margin);
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        }
+
+        .mapCircleContainer {
+            aspect-ratio: 1.3075030750307503075030750307503;
+            max-width: var(--width);
+            max-height: var(--height);
+            transform: translate(-50%, -50%);
+            position: relative;
+            top: 50%;
+            left: 50%;
+        }
+
+        .circle {
+            background-color: #efb962a9;
+            box-sizing: border-box;
+            border: solid 2px white;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-shadow: 2px 2px 6px #0005;
+        }
+
+        .screenMask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2;
+            background-color: #0006;
+        }
+
+        .popup {
+            background-color: white;
+            width: 60vw;
+            height: 60vh;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 10px 10px 10px #0003;
+            padding: 20px;
+            user-select: none;
+            overflow-y: scroll;
+        }
+
+        .user-card {
+            font-weight: lighter;
+            border-radius: 0.5em;
+            display: inline-block;
+            padding: 5px 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            user-select: text;
+        }
+
+        .user-author {
+            border: solid 1px #08f;
+            color: #08f;
+        }
+
+        .user-notAuthor {
+            border: solid 1px #f80;
+            color: #f80;
+        }
+
+        .userList {
+            margin: 10px;
+        }
+
+        .user-position {
+            color: #999;
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="centralMapContainer" id="mapContainer">
+        <div class="mapCircleContainer" id="circleContainer"></div>
+    </div>
+
+    <div class="screenMask" id="provinceDataMask" hidden>
+        <div class="popup">
+            <h1>家乡在<span id="htProvName"></span>的音MADer 们</h1>
+            <div class="userList" id="htUserList"></div>
+            <h1>最近在<span id="acProvName"></span>活动的音MADer 们</h1>
+            <div class="userList" id="acUserList"></div>
+        </div>
+    </div>
+</body>
+
+</html>
