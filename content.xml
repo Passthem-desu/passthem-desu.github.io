@@ -33,13 +33,12 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="Sheet1">
-  <Table ss:ExpandedColumnCount="16" ss:ExpandedRowCount="13" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="13" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="50.5" ss:DefaultRowHeight="12.5">
    <Column ss:AutoFitWidth="0" ss:Width="23"/>
    <Column ss:AutoFitWidth="0" ss:Width="94.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="38.5" ss:Span="2"/>
-   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="123.5"/>
-   <Column ss:AutoFitWidth="0" ss:Width="130.5"/>
+   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="130.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="114.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="242"/>
    <Column ss:AutoFitWidth="0" ss:Width="146"/>
@@ -55,7 +54,6 @@
     <Cell><Data ss:Type="String">所用时间</Data></Cell>
     <Cell><Data ss:Type="String">来源</Data></Cell>
     <Cell><Data ss:Type="String">来源详情</Data></Cell>
-    <Cell><Data ss:Type="String">来自IP</Data></Cell>
     <Cell><Data ss:Type="String">1、那么，请问应该怎么称呼你呢？</Data></Cell>
     <Cell><Data ss:Type="String">2、你主要是作者还是观众呢？</Data></Cell>
     <Cell><Data ss:Type="String">3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？</Data></Cell>
@@ -73,7 +71,6 @@
     <Cell><Data ss:Type="String">54秒</Data></Cell>
     <Cell><Data ss:Type="String">链接</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">183.14.88.43(广东-深圳)</Data></Cell>
     <Cell><Data ss:Type="String">Passthem</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">92852604</Data></Cell>
@@ -91,7 +88,6 @@
     <Cell><Data ss:Type="String">82秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">36.161.68.42(安徽-池州)</Data></Cell>
     <Cell><Data ss:Type="Number">17</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">uid:57247061</Data></Cell>
@@ -109,7 +105,6 @@
     <Cell><Data ss:Type="String">112秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">122.96.42.31(江苏-南京)</Data></Cell>
     <Cell><Data ss:Type="String">猶狩</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">UID:9812876</Data></Cell>
@@ -127,7 +122,6 @@
     <Cell><Data ss:Type="String">76秒</Data></Cell>
     <Cell><Data ss:Type="String">链接</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">220.172.112.195(贵州-遵义)</Data></Cell>
     <Cell><Data ss:Type="String">羽柴尾川</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">386404441</Data></Cell>
@@ -145,7 +139,6 @@
     <Cell><Data ss:Type="String">183秒</Data></Cell>
     <Cell><Data ss:Type="String">链接</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">113.205.249.84(重庆-重庆)</Data></Cell>
     <Cell><Data ss:Type="String">红晨</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">3493113270110693</Data></Cell>
@@ -163,7 +156,6 @@
     <Cell><Data ss:Type="String">146秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">119.143.3.107(广东-广州)</Data></Cell>
     <Cell><Data ss:Type="String">堕の皇</Data></Cell>
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="String">UID:350633051</Data></Cell>
@@ -181,7 +173,6 @@
     <Cell><Data ss:Type="String">62秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">124.238.41.147(河北-沧州)</Data></Cell>
     <Cell><Data ss:Type="String">pigeon某人</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">266655656</Data></Cell>
@@ -199,7 +190,6 @@
     <Cell><Data ss:Type="String">108秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">122.35.117.245(国外-韩国)</Data></Cell>
     <Cell><Data ss:Type="String">铝合金键盘</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">23211210</Data></Cell>
@@ -217,7 +207,6 @@
     <Cell><Data ss:Type="String">78秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">120.219.124.209(河南-郑州)</Data></Cell>
     <Cell><Data ss:Type="String">许祭</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">許祭</Data></Cell>
@@ -235,7 +224,6 @@
     <Cell><Data ss:Type="String">624秒</Data></Cell>
     <Cell><Data ss:Type="String">链接</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">154.3.36.10(国外-美国)</Data></Cell>
     <Cell><Data ss:Type="String">屑站老忘</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">https://space.bilibili.com/401124064</Data></Cell>
@@ -253,7 +241,6 @@
     <Cell><Data ss:Type="String">181秒</Data></Cell>
     <Cell><Data ss:Type="String">手机提交</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">183.228.105.127(重庆-重庆)</Data></Cell>
     <Cell><Data ss:Type="String">阿我饿一屋雨</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">uid9331179</Data></Cell>
@@ -271,7 +258,6 @@
     <Cell><Data ss:Type="String">75秒</Data></Cell>
     <Cell><Data ss:Type="String">链接</Data></Cell>
     <Cell><Data ss:Type="String">直接访问</Data></Cell>
-    <Cell><Data ss:Type="String">39.171.167.165(浙江-绍兴)</Data></Cell>
     <Cell><Data ss:Type="String">兔子</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">https://space.bilibili.com/39934876</Data></Cell>
@@ -292,7 +278,13 @@
     <VerticalResolution>600</VerticalResolution>
    </Print>
    <Selected/>
-   <LeftColumnVisible>9</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveCol>5</ActiveCol>
+     <RangeSelection>C6</RangeSelection>
+    </Pane>
+   </Panes>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
