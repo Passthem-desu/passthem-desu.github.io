@@ -36,6 +36,9 @@
    <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#0563C1"
     ss:Underline="Single"/>
   </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="Sheet1">
   <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="150" x:FullColumns="1"
@@ -2313,7 +2316,12 @@
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">海外-欧洲-德国</Data></Cell>
-    <Cell><Data ss:Type="String">(空)</Data></Cell>
+    <Cell ss:StyleID="s65"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Face="宋体" x:CharSet="134">来自 </Font><Font>Pt </Font><Font
+       html:Face="宋体" x:CharSet="134">的备注：这位 </Font><Font>IP </Font><Font
+       html:Face="宋体" x:CharSet="134">为 </Font><Font>223.74.110.***(</Font><Font
+       html:Face="宋体" x:CharSet="134">广东</Font><Font>-</Font><Font html:Face="宋体"
+       x:CharSet="134">东莞</Font><Font>)</Font><Font html:Face="宋体" x:CharSet="134"> 的兄贵，劝你……</Font></ss:Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">140</Data></Cell>
@@ -2616,11 +2624,12 @@
    <Zoom>70</Zoom>
    <Selected/>
    <TopRowVisible>108</TopRowVisible>
+   <LeftColumnVisible>13</LeftColumnVisible>
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>153</ActiveRow>
-     <ActiveCol>6</ActiveCol>
+     <ActiveRow>130</ActiveRow>
+     <ActiveCol>14</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

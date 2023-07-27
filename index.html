@@ -122,6 +122,15 @@
                 __username.innerText = this.name;
                 _r.appendChild(__username);
 
+                if (this.name == "希特勒") {
+                    // ？？？？
+                    _r.classList.add('wtf');
+                }
+
+                if (this.name == "丁真") {
+                    _r.classList.add('dj');
+                }
+
                 let __positionDisplay = typeNum == 0 ? this.hometownPosition.createElement() : this.activePosition.createElement();
                 _r.appendChild(__positionDisplay);
 
@@ -439,6 +448,17 @@
             color: rgb(20, 160, 109);
         }
 
+        .wtf {
+            border: solid 1px rgb(201, 20, 20);
+            color: rgb(201, 20, 20);
+            text-decoration: line-through;
+        }
+
+        .dj {
+            border: solid 1px rgb(236, 138, 19);
+            color: rgb(236, 138, 19);
+        }
+
         .userList {
             margin: 10px;
         }
@@ -489,7 +509,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0727 17:58<br />
+        数据更新时间：0727 18:32<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
