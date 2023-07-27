@@ -144,7 +144,7 @@
 
                 _r.title = _title.length > 0 ? _title.reduce((x, y) => x + "\n" + y) : "";
 
-                let _match = this.uid.match(/https?:\/\/.+\.com\/.+/);
+                let _match = this.uid.match(/https?:\/\/.+\..+\/.+/);
 
                 let target = null;
 
@@ -154,7 +154,13 @@
                     _match = this.uid.match(/\d+$/);
 
                     if (_match != null && this.uid.match(/https:\/\//) == null) {
-                        target = "https://space.bilibili.com/" + _match[0];
+                        if (this.uid.toLowerCase().indexOf("nico") != -1) {
+                            // 这几行是专门为你加的
+
+                            target = "https://www.nicovideo.jp/user/" + _match[0];
+                        } else {
+                            target = "https://space.bilibili.com/" + _match[0];
+                        }
                     }
                 }
 
@@ -515,7 +521,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0727 19:16<br />
+        数据更新时间：0727 19:34<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
