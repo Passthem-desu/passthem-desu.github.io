@@ -67,8 +67,8 @@
                 this.element.style.left = `${this.data.left * 100}%`;
                 this.element.style.top = `${this.data.top * 100}%`;
 
-                this.element.style.width = `${this.data.size}vmin`;
-                this.element.style.height = `${this.data.size}vmin`;
+                this.element.style.width = `calc(${this.data.size * 0.00662334819525570571089528681206} * var(--min))`;
+                this.element.style.height = `calc(${this.data.size * 0.00662334819525570571089528681206} * var(--min))`;
 
                 this.element.style.backgroundColor = this.data.length() > 0 ? "#008bffa9" : "#efb962a9"
             }
@@ -328,9 +328,11 @@
 
     <style>
         :root {
+            --aspe: 1.3075030750307503075030750307503;
             --margin: 40px;
             --width: calc(100vw - 2 * var(--margin));
             --height: calc(100vh - 2 * var(--margin));
+            --min: calc(min(var(--width), var(--height) * var(--aspe)));
         }
 
         body {
@@ -354,7 +356,7 @@
         }
 
         .mapCircleContainer {
-            aspect-ratio: 1.3075030750307503075030750307503;
+            aspect-ratio: var(--aspe);
             max-width: var(--width);
             max-height: var(--height);
             transform: translate(-50%, -50%);
@@ -367,7 +369,7 @@
         .circle {
             background-color: #efb962a9;
             box-sizing: border-box;
-            border: solid 2px white;
+            border: solid calc(var(--min) * 0.00176848732436710259879212315746) white;
             border-radius: 50%;
             cursor: pointer;
             position: absolute;
@@ -503,6 +505,26 @@
         a:hover {
             color: #0df;
         }
+
+        /* @media screen and (max-width: 960px) {
+            :root {
+                --width: calc(var(--aspe) * var(--height))
+            }
+
+            .centralMapContainer {
+                margin: 0;
+            }
+
+            .mapCircleContainer {
+                box-shadow: none;
+            }
+
+            body {
+                width: 100vw;
+                height: 100vh;
+                overflow: scroll;
+            }
+        } */
     </style>
 </head>
 
@@ -521,7 +543,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0727 19:55<br />
+        数据更新时间：0727 21:48<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
