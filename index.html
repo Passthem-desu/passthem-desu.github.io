@@ -62,13 +62,13 @@
             }
 
             updateView() {
-                this.setSize(10 + this.data.length() * 5);
+                this.setSize(1 + this.data.length() * 0.5);
 
                 this.element.style.left = `${this.data.left * 100}%`;
                 this.element.style.top = `${this.data.top * 100}%`;
 
-                this.element.style.width = `${this.data.size}px`;
-                this.element.style.height = `${this.data.size}px`;
+                this.element.style.width = `${this.data.size}vmin`;
+                this.element.style.height = `${this.data.size}vmin`;
 
                 this.element.style.backgroundColor = this.data.length() > 0 ? "#008bffa9" : "#efb962a9"
             }
@@ -180,7 +180,7 @@
             elements.forEach(e => e.updateView());
         }
 
-        window.addEventListener("load", () => {
+        function init() {
             mapElement = document.getElementById("circleContainer");
 
             circles.forEach(circle => {
@@ -234,7 +234,7 @@
                     document.getElementById("provinceDataMask").classList.remove("show");
                 }
             });
-        });
+        }
 
         function LoadUsers(base, users, typeNum) {
             while (base.children.length > 0) {
@@ -278,6 +278,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: #f2f2f2;
         }
 
         .centralMapContainer {
@@ -301,6 +302,7 @@
             position: relative;
             top: 50%;
             left: 50%;
+            box-shadow: 5px 5px 10px #0003;
         }
 
         .circle {
@@ -442,6 +444,10 @@
         数据更新时间：<span id="data-update-time"></span><br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
+
+    <script>
+        init();
+    </script>
 </body>
 
 </html>
