@@ -197,7 +197,7 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(res, "application/xml");
 
-                document.getElementById("data-update-time").innerText = doc.querySelector("DocumentProperties Created").textContent;
+                // document.getElementById("data-update-time").innerText = doc.querySelector("DocumentProperties Created").textContent;
 
                 let topRow = doc.querySelectorAll("Table Row")[0];
                 for (let i = 1; i < doc.querySelectorAll("Table Row").length; i++) {
@@ -441,7 +441,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：<span id="data-update-time"></span><br />
+        数据更新时间：0727 17:46<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
