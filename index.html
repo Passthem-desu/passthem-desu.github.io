@@ -197,6 +197,8 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(res, "application/xml");
 
+                document.getElementById("data-update-time").innerText = doc.querySelector("DocumentProperties Created").textContent;
+
                 let topRow = doc.querySelectorAll("Table Row")[0];
                 for (let i = 1; i < doc.querySelectorAll("Table Row").length; i++) {
                     let _obj = {};
@@ -229,7 +231,7 @@
 
             document.getElementById("provinceDataMask").addEventListener("click", e => {
                 if (e.target.id == "provinceDataMask") {
-                    document.getElementById("provinceDataMask").hidden = 'hidden';
+                    document.getElementById("provinceDataMask").classList.remove("show");
                 }
             });
         });
@@ -252,7 +254,7 @@
         }
 
         function ShowProvinceDetail(provinceData) {
-            document.getElementById("provinceDataMask").hidden = '';
+            document.getElementById("provinceDataMask").classList.add("show");
 
             document.getElementById("htProvName").innerText = provinceData.name;
             document.getElementById("acProvName").innerText = provinceData.name;
@@ -310,6 +312,12 @@
             position: absolute;
             transform: translate(-50%, -50%);
             box-shadow: 2px 2px 6px #0005;
+            opacity: 0.5;
+            transition: opacity ease 0.3s;
+        }
+
+        .circle:hover {
+            opacity: 1;
         }
 
         .screenMask {
@@ -320,6 +328,24 @@
             height: 100vh;
             z-index: 2;
             background-color: #0006;
+            opacity: 0;
+            transition: opacity ease 0.2s;
+            pointer-events: none;
+        }
+
+        .screenMask.show {
+            opacity: 1;
+            pointer-events: fill;
+        }
+
+        @keyframes popup-animation {
+            0% {
+                transform: translate(-50%, calc(-50% + 40px));
+            }
+
+            100% {
+                transform: translate(-50%, calc(-50%));
+            }
         }
 
         .popup {
@@ -335,6 +361,10 @@
             overflow-y: scroll;
         }
 
+        .screenMask.show .popup {
+            animation: popup-animation forwards 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
         .popup h1 {
             user-select: none;
         }
@@ -346,6 +376,7 @@
             padding: 5px 15px;
             margin-right: 10px;
             margin-bottom: 10px;
+            box-shadow: 4px 4px 6px #0002;
         }
 
         .user-author {
@@ -366,6 +397,30 @@
             color: #999;
             font-size: small;
         }
+
+        .MessageBox {
+            opacity: 0.5;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            padding: 20px 10px;
+            background-color: white;
+            box-shadow: 4px 4px 6px #0002;
+            transition: opacity ease 0.2s;
+        }
+
+        .MessageBox:hover {
+            opacity: 0.8;
+        }
+
+        a {
+            color: #0bf;
+            transition: color ease 0.2s;
+        }
+
+        a:hover {
+            color: #0df;
+        }
     </style>
 </head>
 
@@ -374,13 +429,18 @@
         <div class="mapCircleContainer" id="circleContainer"></div>
     </div>
 
-    <div class="screenMask" id="provinceDataMask" hidden>
-        <div class="popup">
+    <div class="screenMask" id="provinceDataMask">
+        <div class="popup" id="provincePopup">
             <h1>家乡在<span id="htProvName"></span>的音MADer 们</h1>
             <div class="userList" id="htUserList"></div>
             <h1>最近在<span id="acProvName"></span>活动的音MADer 们</h1>
             <div class="userList" id="acUserList"></div>
         </div>
+    </div>
+
+    <div class="MessageBox">
+        数据更新时间：<span id="data-update-time"></span><br />
+        问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 </body>
 
