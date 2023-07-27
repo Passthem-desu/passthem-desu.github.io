@@ -125,6 +125,44 @@
                 let __positionDisplay = typeNum == 0 ? this.hometownPosition.createElement() : this.activePosition.createElement();
                 _r.appendChild(__positionDisplay);
 
+                let _title = [];
+                if (this.uid != "") {
+                    _title.push(`提供的 UID: ${this.uid}`)
+                }
+                if (this.note != "") {
+                    _title.push(`备注: ${this.note}`)
+                }
+
+                _r.title = _title.length > 0 ? _title.reduce((x, y) => x + "\n" + y) : "";
+
+                let _match = this.uid.match(/https?:\/\/space.bilibili.com\/\d+/);
+
+                let target = null;
+
+                if (_match != null) {
+                    target = _match[0];
+                } else {
+                    _match = this.uid.match(/\d+$/);
+
+                    if (_match != null && this.uid.match(/https:\/\//) == null) {
+                        target = "https://space.bilibili.com/" + _match[0];
+                    }
+                }
+
+                if (target != null) {
+                    _r.classList.add("clickable");
+                    _r.addEventListener("click", () => {
+                        if (confirm(`你将要打开链接${target}，你要继续吗？`)) {
+                            let __r = document.createElement("a");
+                            __r.href = target;
+                            __r.target = "_blank";
+                            __r.click();
+
+                            __r.remove();
+                        }
+                    });
+                }
+
                 return _r;
             }
         }
@@ -143,24 +181,24 @@
             new ProvinceCircleData(0.615, 0.880, "香港"),
             new ProvinceCircleData(0.701, 0.775, "福建"),
             new ProvinceCircleData(0.742, 0.795, "台湾"),
-            new ProvinceCircleData(0.707, 0.664, "浙江"),
             new ProvinceCircleData(0.480, 0.695, "重庆"),
             new ProvinceCircleData(0.441, 0.665, "四川"),
             new ProvinceCircleData(0.227, 0.656, "西藏"),
             new ProvinceCircleData(0.607, 0.664, "湖北"),
-            new ProvinceCircleData(0.726, 0.640, "上海"),
             new ProvinceCircleData(0.682, 0.627, "江苏"),
+            new ProvinceCircleData(0.707, 0.664, "浙江"),
+            new ProvinceCircleData(0.726, 0.640, "上海"),
             new ProvinceCircleData(0.657, 0.630, "安徽"),
             new ProvinceCircleData(0.597, 0.562, "河南"),
             new ProvinceCircleData(0.522, 0.575, "陕西"),
             new ProvinceCircleData(0.442, 0.531, "甘肃"),
             new ProvinceCircleData(0.409, 0.508, "青海"),
             new ProvinceCircleData(0.482, 0.467, "宁夏"),
-            new ProvinceCircleData(0.562, 0.406, "内蒙古"),
-            new ProvinceCircleData(0.578, 0.480, "山西"),
+            new ProvinceCircleData(0.632, 0.424, "北京"),
             new ProvinceCircleData(0.647, 0.510, "山东"),
             new ProvinceCircleData(0.606, 0.477, "河北"),
-            new ProvinceCircleData(0.632, 0.424, "北京"),
+            new ProvinceCircleData(0.578, 0.480, "山西"),
+            new ProvinceCircleData(0.562, 0.406, "内蒙古"),
             new ProvinceCircleData(0.643, 0.441, "天津"),
             new ProvinceCircleData(0.730, 0.360, "辽宁"),
             new ProvinceCircleData(0.749, 0.302, "吉林"),
@@ -210,7 +248,7 @@
                     let user = new User(
                         _obj["1、那么，请问应该怎么称呼你呢？"],
                         _obj["2、你主要是作者还是观众呢？"] == 1,
-                        _obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"],
+                        (_obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"] == "(空)" ? "" : _obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"]).toLowerCase().replace(/ /g, "").replace(/uid:/g, ""),
                         new Position(
                             _obj["6、那么，你的家乡是哪里呢？"],
                             _obj["4、你希望你的家乡的地区信息公开吗？"] == 2 ? 0 : _obj["5、你希望你的家乡的信息被公开到什么级别？"]
@@ -381,14 +419,24 @@
             box-shadow: 4px 4px 6px #0002;
         }
 
+        .user-card.clickable {
+            cursor: pointer;
+            transition: all ease 0.12s;
+        }
+
+        .user-card.clickable:hover {
+            box-shadow: 6px 6px 8px #0002;
+            transform: translate(-1px, -1px);
+        }
+
         .user-author {
             border: solid 1px #08f;
             color: #08f;
         }
 
         .user-notAuthor {
-            border: solid 1px #f80;
-            color: #f80;
+            border: solid 1px rgb(20, 160, 109);
+            color: rgb(20, 160, 109);
         }
 
         .userList {
@@ -441,7 +489,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0727 17:46<br />
+        数据更新时间：0727 17:58<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
