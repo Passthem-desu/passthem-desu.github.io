@@ -144,7 +144,7 @@
 
                 _r.title = _title.length > 0 ? _title.reduce((x, y) => x + "\n" + y) : "";
 
-                let _match = this.uid.match(/https?:\/\/space.bilibili.com\/\d+/);
+                let _match = this.uid.match(/https?:\/\/.+\.com\/.+/);
 
                 let target = null;
 
@@ -227,6 +227,10 @@
             elements.forEach(e => e.updateView());
         }
 
+        function isUserExists(user) {
+            return users.findIndex(u => u.name == user.name) != -1;
+        }
+
         function init() {
             mapElement = document.getElementById("circleContainer");
 
@@ -244,10 +248,8 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(res, "application/xml");
 
-                // document.getElementById("data-update-time").innerText = doc.querySelector("DocumentProperties Created").textContent;
-
                 let topRow = doc.querySelectorAll("Table Row")[0];
-                for (let i = 1; i < doc.querySelectorAll("Table Row").length; i++) {
+                for (let i = doc.querySelectorAll("Table Row").length - 1; i > 0; i--) {
                     let _obj = {};
 
                     for (let j = 0; j < topRow.children.length; j++) {
@@ -257,7 +259,7 @@
                     let user = new User(
                         _obj["1、那么，请问应该怎么称呼你呢？"],
                         _obj["2、你主要是作者还是观众呢？"] == 1,
-                        (_obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"] == "(空)" ? "" : _obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"]).toLowerCase().replace(/ /g, "").replace(/uid:/g, ""),
+                        (_obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"] == "(空)" ? "" : _obj["3、如果方便的话，能提供你的 B 站 uid 或者个人空间的链接吗？"]),
                         new Position(
                             _obj["6、那么，你的家乡是哪里呢？"],
                             _obj["4、你希望你的家乡的地区信息公开吗？"] == 2 ? 0 : _obj["5、你希望你的家乡的信息被公开到什么级别？"]
@@ -269,8 +271,12 @@
                         _obj["10、还有什么想说的吗？"] == "(空)" ? "" : _obj["10、还有什么想说的吗？"]
                     );
 
-                    _p(user.hometownPosition.province)?.addHTUser(user);
-                    _p(user.activePosition.province)?.addACUser(user);
+                    if (!isUserExists(user)) {
+                        _p(user.hometownPosition.province)?.addHTUser(user);
+                        _p(user.activePosition.province)?.addACUser(user);
+                    }
+
+                    users.push(user);
                 }
 
                 updateView();
@@ -509,7 +515,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0727 18:32<br />
+        数据更新时间：0727 19:16<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a>
     </div>
 
