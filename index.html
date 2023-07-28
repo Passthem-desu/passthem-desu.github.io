@@ -62,7 +62,7 @@
             }
 
             updateView(noChangeSize) {
-                noChangeSize ? undefined : this.setSize(1 + this.data.length() * 0.5);
+                noChangeSize ? undefined : this.setSize(2 + this.data.length() * 0.5);
 
                 this.element.style.left = `${this.data.left * 100}%`;
                 this.element.style.top = `${this.data.top * 100}%`;
@@ -122,13 +122,12 @@
                 __username.innerText = this.name;
                 _r.appendChild(__username);
 
-                if (this.name == "希特勒") {
-                    // ？？？？
-                    _r.classList.add('wtf');
-                }
-
                 if (this.name == "丁真") {
                     _r.classList.add('dj');
+                }
+
+                if (this.name == "MrChenBeta") {
+                    _r.addEventListener("contextmenu", showMCBMenu);
                 }
 
                 let __positionDisplay = typeNum == 0 ? this.hometownPosition.createElement() : this.activePosition.createElement();
@@ -190,7 +189,6 @@
             new ProvinceCircleData(0.507, 0.869, "广西"),
             new ProvinceCircleData(0.410, 0.804, "云南"),
             new ProvinceCircleData(0.545, 0.940, "海南"),
-            new ProvinceCircleData(0.641, 0.715, "江西"),
             new ProvinceCircleData(0.227, 0.282, "新疆"),  // 稻米纳特 进入了直播间
             new ProvinceCircleData(0.603, 0.883, "澳门"),
             new ProvinceCircleData(0.615, 0.880, "香港"),
@@ -199,7 +197,6 @@
             new ProvinceCircleData(0.480, 0.695, "重庆"),
             new ProvinceCircleData(0.441, 0.665, "四川"),
             new ProvinceCircleData(0.227, 0.656, "西藏"),
-            new ProvinceCircleData(0.607, 0.664, "湖北"),
             new ProvinceCircleData(0.682, 0.627, "江苏"),
             new ProvinceCircleData(0.707, 0.664, "浙江"),
             new ProvinceCircleData(0.726, 0.640, "上海"),
@@ -219,6 +216,8 @@
             new ProvinceCircleData(0.749, 0.302, "吉林"),
             new ProvinceCircleData(0.758, 0.250, "黑龙江"),
             new ProvinceCircleData(0.800, 0.500, "海外"),
+            new ProvinceCircleData(0.641, 0.715, "江西"),
+            new ProvinceCircleData(0.607, 0.664, "湖北"),
         ];
 
         var elements = [];
@@ -293,6 +292,10 @@
                     document.getElementById("provinceDataMask").classList.remove("show");
                 }
             });
+
+            document.addEventListener("click", () => {
+                closeAllMenu();
+            });
         }
 
         function LoadUsers(base, users, typeNum) {
@@ -352,6 +355,29 @@
                 xj.setSize(100);
                 xj.updateView(true);
             }
+        }
+
+        function MoveMCBToNanjing() {
+            alert("你不能将 MrChenBeta 移动至南京。他非常抗拒。\n——因为没有一直鸭子能活着离开南京\n————冷笑话 by 铝合金键盘")
+        }
+
+        function showMCBMenu(e) {
+            e.preventDefault();
+
+            var context = document.getElementById("MCBContextMenu");
+            context.style.display = "block";
+
+            var x = e.clientX;
+            var y = e.clientY;
+
+            context.style.left = x - 200 + "px";
+            context.style.top = y + "px";
+
+            return false;
+        };
+
+        function closeAllMenu() {
+            document.querySelectorAll(".ContextMenu").forEach(ele => ele.style.display = "none");
         }
     </script>
 
@@ -534,6 +560,30 @@
         a:hover {
             color: #0df;
         }
+
+        .ContextMenu {
+            width: 200px;
+            border: 1px solid #999;
+            box-shadow: 3px 3px 3px #0003;
+            background-color: #fff;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: none;
+            z-index: 5;
+        }
+
+        .ContextMenuItem {
+            height: 40px;
+            line-height: 40px;
+            padding: 0 30px;
+            cursor: pointer;
+        }
+
+        .ContextMenuItem:hover {
+            background-color: #eee;
+            transition: background-color ease 0.2s;
+        }
     </style>
 </head>
 
@@ -552,7 +602,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0728 15:01<br />
+        数据更新时间：0728 22:31<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a><br />
         <br />
         一些小彩蛋，点击 20 次以<a href="#" id="openUpButton" onclick="ToggleTrolls()">展开</a><br />
@@ -560,7 +610,14 @@
             <li>
                 <a href="#" onclick="MakeTheCircleOfXinjiangBigger()">1. <img src="p1.png" height="50" /></a>
             </li>
+            <li>
+                2. 右键 MrChenBeta
+            </li>
         </ul>
+    </div>
+
+    <div class="ContextMenu" id="MCBContextMenu">
+        <div class="ContextMenuItem" onclick="MoveMCBToNanjing()">移动到南京</div>
     </div>
 
     <script>
