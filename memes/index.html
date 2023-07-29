@@ -95,6 +95,11 @@
             color: red;
             background-color: #311;
         }
+
+        .wide-button-set-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
     </style>
 
     <script>
@@ -139,13 +144,19 @@
             });
         }
 
-        function createUserElement() {
+        function createUserElement(data) {
+            data ??= {
+                "name": "用户名",
+                "pic": "./sgts.png",
+                "desc": "-请点击这里编辑内容",
+            };
+
             let card = document.createElement("div");
             card.classList.add("user-card");
 
             let image = document.createElement("div");
             image.classList.add("user-image");
-            registerChangeBackgroundImage(image, "./sgts.png");
+            registerChangeBackgroundImage(image, data.pic);
             card.appendChild(image);
 
             let name = document.createElement("div");
@@ -153,7 +164,7 @@
             nameInner.contentEditable = true;
             nameInner.classList.add("user-name-inner");
             nameInner.classList.add("content-editable");
-            nameInner.innerText = "用户名";
+            nameInner.innerText = data.name;
             name.appendChild(nameInner);
             name.classList.add("user-name");
             card.appendChild(name);
@@ -163,7 +174,7 @@
             description.classList.add('user-description');
             description.classList.add('content-editable');
             description.contentEditable = true;
-            description.innerText = '-请点击这里编辑内容';
+            description.innerText = data.desc;
             card.appendChild(description);
 
             var removeButton = document.createElement('div');
@@ -176,32 +187,134 @@
             return card;
         }
 
+        function getImageFromElement(element) {
+            let raw = element.style.backgroundImage;
+
+            return raw.substring(5, raw.length - 2)
+        }
+
+        function readDataFromContent() {
+            let data = {
+                title: document.getElementById("title").innerText,
+                myimage: getImageFromElement(document.getElementById("me")),
+                mydesc: document.getElementById("my-description").innerText,
+                myname: document.getElementById("my-name").innerText,
+                data: []
+            };
+
+            document.querySelectorAll("#main-list>*").forEach(card => {
+                data.data.push({
+                    name: card.querySelector(".user-name-inner").innerText,
+                    pic: getImageFromElement(card.querySelector(".user-image")),
+                    desc: card.querySelector(".user-description").innerText
+                });
+            });
+
+            return data;
+        }
+
+        function loadContentFromData(data) {
+            const mainList = document.getElementById("main-list");
+
+            mainList.innerHTML = "";
+
+            data.data.forEach((user) => {
+                const card = createUserElement(user);
+                mainList.appendChild(card);
+            });
+
+            document.getElementById("title").innerText = data.title;
+            document.getElementById("me").style.backgroundImage = `url("${data.myimage}")`;
+            document.getElementById("my-description").innerText = data.mydesc;
+            document.getElementById("my-name").innerText = data.myname;
+        }
+
+        function saveDataToLocalStorage() {
+            const jsonData = JSON.stringify(readDataFromContent());
+            localStorage.setItem("userData", jsonData);
+        }
+
         window.addEventListener("load", () => {
             registerChangeBackgroundImage(document.getElementById("me"), "./me.png");
             registerChangeBackgroundImage(document.getElementById("test-image"), "./sgts.png");
 
-            document.querySelectorAll(".user-name").forEach(registerChangeUsername);
+            const savedData = localStorage.getItem("userData");
+            let flag = false;
 
-            registerRemoveButton(document.getElementById("test-card"), document.getElementById("test-button"));
+            if (savedData) {
+                try {
+                    loadContentFromData(JSON.parse(savedData));
+                    flag = true;
+                } catch (error) {
+
+                }
+            }
+
+            if (!flag) {
+                saveDataToLocalStorage();
+
+                document.querySelectorAll(".user-name").forEach(registerChangeUsername);
+
+                registerRemoveButton(document.getElementById("test-card"), document.getElementById("test-button"));
+            }
+
+            setInterval(() => {
+                saveDataToLocalStorage();
+            }, 1000);
 
             document.getElementById("new-button").addEventListener("click", () => {
                 document.getElementById("main-list").appendChild(createUserElement());
             });
+
+            /* 非常好代码，来自 ChatGPT，完美符合我的需求 */
+            document.getElementById("save-button").addEventListener("click", () => {
+                const data = readDataFromContent();
+                const jsonData = JSON.stringify(data);
+                const blob = new Blob([jsonData], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "暂存文件.otmeme";
+                link.click();
+            });
+
+            document.getElementById("load-button").addEventListener("click", () => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = ".otmeme";
+                input.onchange = event => {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const content = e.target.result;
+                        const jsonData = JSON.parse(content);
+                        loadContentFromData(jsonData);
+                    };
+                    reader.readAsText(file);
+                };
+                input.click();
+            });
+        });
+
+        window.addEventListener("beforeunload", function (event) {
+            saveDataToLocalStorage();
         });
     </script>
 </head>
 
 <body>
     <div class="main">
-        <h1><span style="font-size: larger; font-weight: bolder;">摩拳擦掌</span>准备<span contenteditable="true"
-                class="content-editable">参加新举办的音MAD 活动</span>的你 Be like——</h1>
+        <h1>
+            <span style="font-size: larger; font-weight: bolder;">摩拳擦掌</span>准备<span contenteditable="true"
+                class="content-editable" id="title">参加新举办的音MAD 活动</span>的你 Be like——
+        </h1>
         <div class="user-card-list">
             <div class="user-card">
                 <div class="user-image" id="me"></div>
                 <div class="user-name">
-                    <div class="user-name-inner content-editable" contenteditable="true">你</div>
+                    <div class="user-name-inner content-editable" contenteditable="true" id="my-name">你</div>
                 </div>
-                <div class="user-description content-editable" contenteditable="true">
+                <div class="user-description content-editable" contenteditable="true" id="my-description">
                     -通过某个合作接触的音mad，看见有活动就来了<br />
                     -看了很多非音mad教程，不知道怎么做音mad<br />
                     -软件很卡，会用的功能不超过五个<br />
@@ -226,6 +339,10 @@
             </div>
         </div>
         <div class="wide-button" id="new-button">添加新的对手</div>
+        <div class="wide-button-set-2">
+            <div class="wide-button" id="load-button">加载暂存文件</div>
+            <div class="wide-button" id="save-button">保存暂存文件</div>
+        </div>
     </div>
 </body>
 
