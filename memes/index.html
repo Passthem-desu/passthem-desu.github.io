@@ -256,6 +256,8 @@
                 document.querySelectorAll(".user-name").forEach(registerChangeUsername);
 
                 registerRemoveButton(document.getElementById("test-card"), document.getElementById("test-button"));
+            } else {
+                registerChangeUsername(document.getElementById("my-name-outer"));
             }
 
             setInterval(() => {
@@ -311,7 +313,7 @@
         <div class="user-card-list">
             <div class="user-card">
                 <div class="user-image" id="me"></div>
-                <div class="user-name">
+                <div class="user-name" id="my-name-outer">
                     <div class="user-name-inner content-editable" contenteditable="true" id="my-name">你</div>
                 </div>
                 <div class="user-description content-editable" contenteditable="true" id="my-description">
