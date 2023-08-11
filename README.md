@@ -1,2 +1,2 @@
 # passthem-cloudflare-cdn
-For Cloudflare Proxy
+This repository is for Cloudflare proxies
