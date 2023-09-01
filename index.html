@@ -93,10 +93,10 @@
                 return province.name == this.province.name;
             }
 
-            createElement() {
+            createElement(markType) {
                 let _r = document.createElement("div");
                 _r.classList.add('user-position');
-                _r.innerText = this.province + (this.city ? `-${this.city}` : '') + (this.region ? `-${this.region}` : '');
+                _r.innerText = ["", "家乡: ", "活动: "][markType] + (this.province ? this.province + (this.city ? `-${this.city}` : '') + (this.region ? `-${this.region}` : '') : "不透露");
 
                 return _r;
             }
@@ -130,8 +130,15 @@
                     _r.addEventListener("contextmenu", showMCBMenu);
                 }
 
-                let __positionDisplay = typeNum == 0 ? this.hometownPosition.createElement() : this.activePosition.createElement();
-                _r.appendChild(__positionDisplay);
+                if (typeNum == 0 || typeNum == 2) {
+                    let __positionDisplay = this.hometownPosition.createElement(typeNum == 2 ? 1 : 0);
+                    _r.appendChild(__positionDisplay);
+                }
+
+                if (typeNum == 1 || typeNum == 2) {
+                    let __positionDisplay = this.activePosition.createElement(typeNum == 2 ? 2 : 0)
+                    _r.appendChild(__positionDisplay);
+                }
 
                 let _title = [];
                 if (this.uid != "") {
@@ -236,14 +243,14 @@
             return users.findIndex(u => u.name == user.name) != -1;
         }
 
-        function init() {
+        async function init() {
             mapElement = document.getElementById("circleContainer");
 
             circles.forEach(circle => {
                 elements.push(new ProvinceCircle(mapElement, circle));
             });
 
-            fetch("./content.xml", {
+            await fetch("./content.xml", {
                 headers: {
                     'Cache-Control': 'no-cache'
                 }
@@ -295,6 +302,20 @@
 
             document.addEventListener("click", () => {
                 closeAllMenu();
+            });
+
+            document.getElementById("searchInput").addEventListener("input", () => {
+                let users = searchForUsers(document.getElementById("searchInput").value);
+
+                LoadUsers(document.getElementById("searchUserList"), users, 2)
+            });
+
+            document.getElementById("searchMessageBox").addEventListener("focusin", () => {
+                document.getElementById("searchMessageBox").classList.add("active");
+            });
+
+            document.getElementById("searchMessageBox").addEventListener("focusout", () => {
+                document.getElementById("searchMessageBox").classList.remove("active");
             });
         }
 
@@ -378,6 +399,10 @@
 
         function closeAllMenu() {
             document.querySelectorAll(".ContextMenu").forEach(ele => ele.style.display = "none");
+        }
+
+        function searchForUsers(username) {
+            return users.filter(user => user.name.indexOf(username) != -1 || user.uid.indexOf(username) != -1);
         }
     </script>
 
@@ -552,6 +577,11 @@
             opacity: 0.8;
         }
 
+        .MessageBoxRight {
+            left: unset;
+            right: 20px;
+        }
+
         a {
             color: #0bf;
             transition: color ease 0.2s;
@@ -596,6 +626,34 @@
         }
 
         /* 以上 */
+
+        .SearchButton {
+            display: inline-block;
+            font-size: larger;
+            user-select: none;
+            margin-left: 6px;
+            margin-right: 6px;
+            cursor: pointer;
+        }
+
+        .SearchInput {
+            outline: none;
+            border: solid 1px #ccc;
+            padding: 5px 10px;
+        }
+
+        .SearchMessageBox {
+            width: 300px;
+            right: -230px;
+            transition: opacity ease 0.2s, right ease 0.2s;
+        }
+
+        .SearchMessageBox:hover,
+        .SearchMessageBox:focus,
+        .SearchMessageBox:active,
+        .SearchMessageBox.active {
+            right: 20px;
+        }
     </style>
 </head>
 
@@ -614,7 +672,7 @@
     </div>
 
     <div class="MessageBox">
-        数据更新时间：0820 12:44<br />
+        数据更新时间：0901 10:20<br />
         问卷地址：<a href="https://www.wjx.top/vm/w9RcbhN.aspx" target="_blank">这里</a><br />
         <br />
         一些小彩蛋，点击 20 次以<a href="#" id="openUpButton" onclick="ToggleTrolls()">展开</a><br />
@@ -628,12 +686,20 @@
         </ul>
     </div>
 
+    <div class="MessageBox MessageBoxRight SearchMessageBox" id="searchMessageBox">
+        <span>搜索作者</span>
+        <input class="SearchInput" id="searchInput" />
+        <div class="SearchButton">⌕</div>
+        <div class="userList" id="searchUserList"
+            style="max-height: 600px; overflow-y: scroll; padding: 20px; border: solid 1px #ccc;"></div>
+    </div>
+
     <div class="ContextMenu" id="MCBContextMenu">
         <div class="ContextMenuItem" onclick="MoveMCBToNanjing()">移动到南京</div>
     </div>
 
     <script>
-        init();
+        new Promise(init);
     </script>
 </body>
 
