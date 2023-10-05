@@ -16,8 +16,8 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11060</WindowHeight>
-  <WindowWidth>25600</WindowWidth>
+  <WindowHeight>8480</WindowHeight>
+  <WindowWidth>15850</WindowWidth>
   <WindowTopX>32767</WindowTopX>
   <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -36,9 +36,12 @@
    <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#0066CC"
     ss:Underline="Single"/>
   </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="Sheet1">
-  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="375" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="385" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="50.5" ss:DefaultRowHeight="12.5">
    <Column ss:AutoFitWidth="0" ss:Width="23"/>
    <Column ss:AutoFitWidth="0" ss:Width="94.5"/>
@@ -730,7 +733,11 @@
     <Cell><Data ss:Type="String">广东-汕头市-潮阳区</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell><Data ss:Type="String">广东-深圳市-宝安区</Data></Cell>
+    <Cell ss:StyleID="s65"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Face="微软雅黑"
+       x:CharSet="134" x:Family="Swiss">广东</Font><Font>-</Font><Font html:Face="微软雅黑"
+       x:CharSet="134" x:Family="Swiss">广州市</Font><Font>-</Font><Font html:Face="宋体"
+       x:CharSet="134">海珠区</Font></ss:Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
@@ -6193,7 +6200,7 @@
     <Cell><Data ss:Type="String">海南-海口市-龙华区</Data></Cell>
     <Cell><Data ss:Type="String">非常期待能和海南的音mader朋友见面</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">411</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/1 23:44:07</Data></Cell>
     <Cell><Data ss:Type="String">153秒</Data></Cell>
@@ -6210,7 +6217,7 @@
     <Cell><Data ss:Type="String">北京-北京市-东城区</Data></Cell>
     <Cell><Data ss:Type="String">尼纳</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">412</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 0:01:24</Data></Cell>
     <Cell><Data ss:Type="String">47秒</Data></Cell>
@@ -6227,7 +6234,7 @@
     <Cell><Data ss:Type="Number">-3</Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">413</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 0:04:53</Data></Cell>
     <Cell><Data ss:Type="String">47秒</Data></Cell>
@@ -6244,7 +6251,7 @@
     <Cell><Data ss:Type="Number">-3</Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">414</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 0:23:00</Data></Cell>
     <Cell><Data ss:Type="String">158秒</Data></Cell>
@@ -6261,7 +6268,7 @@
     <Cell><Data ss:Type="Number">-3</Data></Cell>
     <Cell><Data ss:Type="String">这是方便线下面基吗()</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">415</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 0:27:25</Data></Cell>
     <Cell><Data ss:Type="String">165秒</Data></Cell>
@@ -6278,7 +6285,7 @@
     <Cell><Data ss:Type="String">新疆-乌鲁木齐市-天山区</Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">416</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 6:59:04</Data></Cell>
     <Cell><Data ss:Type="String">197秒</Data></Cell>
@@ -6295,7 +6302,7 @@
     <Cell><Data ss:Type="String">辽宁-大连市-甘井子区</Data></Cell>
     <Cell><Data ss:Type="String">只是一个普通的音MAD观众罢了。_。</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">417</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 11:55:24</Data></Cell>
     <Cell><Data ss:Type="String">79秒</Data></Cell>
@@ -6312,7 +6319,7 @@
     <Cell><Data ss:Type="String">云南-玉溪市-红塔区</Data></Cell>
     <Cell><Data ss:Type="String">passthem最帅</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">418</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 18:12:48</Data></Cell>
     <Cell><Data ss:Type="String">144秒</Data></Cell>
@@ -6329,7 +6336,7 @@
     <Cell><Data ss:Type="Number">-3</Data></Cell>
     <Cell><Data ss:Type="String">孩子做着玩的 作品不好哥我错了</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">419</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 19:50:21</Data></Cell>
     <Cell><Data ss:Type="String">143秒</Data></Cell>
@@ -6346,7 +6353,7 @@
     <Cell><Data ss:Type="Number">-3</Data></Cell>
     <Cell><Data ss:Type="String">我是音mad兼音游大神</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">420</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/2 23:39:12</Data></Cell>
     <Cell><Data ss:Type="String">191秒</Data></Cell>
@@ -6363,7 +6370,7 @@
     <Cell><Data ss:Type="String">江苏-无锡市-锡山区</Data></Cell>
     <Cell><Data ss:Type="String">我喜欢passthem&#10;对不起pt哥又对你发电了</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">421</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/3 5:12:19</Data></Cell>
     <Cell><Data ss:Type="String">118秒</Data></Cell>
@@ -6380,7 +6387,7 @@
     <Cell><Data ss:Type="String">海外-欧洲-芬兰</Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">422</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/3 15:11:01</Data></Cell>
     <Cell><Data ss:Type="String">49秒</Data></Cell>
@@ -6397,7 +6404,7 @@
     <Cell><Data ss:Type="String">四川-成都市-高新区</Data></Cell>
     <Cell><Data ss:Type="String">(空)</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">423</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/3 15:13:46</Data></Cell>
     <Cell><Data ss:Type="String">103秒</Data></Cell>
@@ -6414,7 +6421,7 @@
     <Cell><Data ss:Type="String">湖北-随州市-广水市</Data></Cell>
     <Cell><Data ss:Type="String">亻尔    女子</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">424</Data></Cell>
     <Cell><Data ss:Type="String">2023/9/3 15:17:38</Data></Cell>
     <Cell><Data ss:Type="String">93秒</Data></Cell>
@@ -6431,6 +6438,176 @@
     <Cell><Data ss:Type="String">吉林-延边朝鲜族自治州-延吉市</Data></Cell>
     <Cell><Data ss:Type="String">没有</Data></Cell>
    </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">426</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/4 12:24:57</Data></Cell>
+    <Cell><Data ss:Type="String">178秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">灰灰樱</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">5985894</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">山东-聊城市-东昌府区</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">山东-济南市-天桥区</Data></Cell>
+    <Cell><Data ss:Type="String">(空)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">427</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/4 20:33:33</Data></Cell>
+    <Cell><Data ss:Type="String">115秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">海绵宝宝纳兹琳</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">https://space.bilibili.com/363732960</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">山西-阳泉市-城区</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="String">阿米诺斯</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">428</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/6 4:09:44</Data></Cell>
+    <Cell><Data ss:Type="String">488秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">LoyalKopForever</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">https://b23.tv/YcLoLj1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">广东-深圳市-福田区</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">上海-上海市-浦东新区</Data></Cell>
+    <Cell><Data ss:Type="String">音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~ 音mad万岁！~(≧▽≦)/~</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">429</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/8 21:49:56</Data></Cell>
+    <Cell><Data ss:Type="String">65秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">苟系心法</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">UID:1534706721</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">山西-晋中市-榆社县</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">山东-济南市-高新区</Data></Cell>
+    <Cell><Data ss:Type="String">(空)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">430</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/14 6:02:24</Data></Cell>
+    <Cell><Data ss:Type="String">208秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">汉堡侠客（扶桑家的子会）</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">UID:18150391</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">浙江-杭州市-淳安县</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">陕西-西安市-雁塔区</Data></Cell>
+    <Cell><Data ss:Type="String">吃好喝好玩好睡好</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">431</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/17 10:44:43</Data></Cell>
+    <Cell><Data ss:Type="String">93秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">坂竹认</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">坂竹认</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">广东-揭阳市-普宁市</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">广东-揭阳市-普宁市</Data></Cell>
+    <Cell><Data ss:Type="String">(空)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">432</Data></Cell>
+    <Cell><Data ss:Type="String">2023/9/17 10:56:02</Data></Cell>
+    <Cell><Data ss:Type="String">119秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">雾雨罡巽</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">https://b23.tv/vI53PGj</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">黑龙江-哈尔滨市-南岗区</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">广东-广州市-海珠区</Data></Cell>
+    <Cell><Data ss:Type="String">(空)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">433</Data></Cell>
+    <Cell><Data ss:Type="String">2023/10/1 22:35:52</Data></Cell>
+    <Cell><Data ss:Type="String">115秒</Data></Cell>
+    <Cell><Data ss:Type="String">链接</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">蛋Dam</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">https://space.bilibili.com/475276288?spm_id_from=333.999.0.0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">四川-德阳市-旌阳区</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">四川-德阳市-旌阳区</Data></Cell>
+    <Cell><Data ss:Type="String">专业失踪人口(</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">434</Data></Cell>
+    <Cell><Data ss:Type="String">2023/10/4 11:55:40</Data></Cell>
+    <Cell><Data ss:Type="String">86秒</Data></Cell>
+    <Cell><Data ss:Type="String">链接</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">旖光</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1622458</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">甘肃-兰州市-安宁区</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="Number">111</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">435</Data></Cell>
+    <Cell><Data ss:Type="String">2023/10/5 13:31:12</Data></Cell>
+    <Cell><Data ss:Type="String">110秒</Data></Cell>
+    <Cell><Data ss:Type="String">手机提交</Data></Cell>
+    <Cell><Data ss:Type="String">直接访问</Data></Cell>
+    <Cell><Data ss:Type="String">鸽王本鸽_</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">UID:474107244</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">安徽-宣城市-宁国市</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="String">(空)</Data></Cell>
+   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <Unsynced/>
@@ -6442,13 +6619,13 @@
    </Print>
    <Zoom>115</Zoom>
    <Selected/>
-   <TopRowVisible>342</TopRowVisible>
+   <TopRowVisible>97</TopRowVisible>
+   <LeftColumnVisible>8</LeftColumnVisible>
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>367</ActiveRow>
-     <ActiveCol>14</ActiveCol>
-     <RangeSelection>R368C1:R368C15</RangeSelection>
+     <ActiveRow>39</ActiveRow>
+     <ActiveCol>13</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
