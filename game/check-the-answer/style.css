@@ -26,6 +26,15 @@ body {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1333333333);
   }
 }
+.main-container.card-style-important .card .selection-container {
+  grid-template-columns: 1fr;
+}
+.main-container.card-style-important .card .selection-container .card-selection {
+  background-color: rgb(165, 40, 40);
+}
+.main-container.card-style-important .card .selection-container .card-selection:hover {
+  background-color: rgb(164, 58, 58);
+}
 .main-container .card {
   padding: 20px;
 }

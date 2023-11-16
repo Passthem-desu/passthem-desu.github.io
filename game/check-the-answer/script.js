@@ -95,24 +95,30 @@ var GameContainer = /** @class */ (function () {
     return GameContainer;
 }());
 var GameSelection = /** @class */ (function () {
-    function GameSelection(targetId, title, checkFunction, description, delta) {
+    function GameSelection(targetId, title, checkFunction, description, delta, doConfirm) {
         this.targetId = targetId;
         this.title = title;
         this.checkFunction = checkFunction !== null && checkFunction !== void 0 ? checkFunction : (function (_) { return true; });
         this.description = description !== null && description !== void 0 ? description : "";
         this.delta = delta !== null && delta !== void 0 ? delta : {};
+        this.confirm = doConfirm;
     }
     GameSelection.prototype.createElement = function (parent) {
         var _this = this;
         var element = createDivElementByClassName(parent.selectionContainer, "card-selection");
         var title = createDivElementByClassName(element, "card-selection-title");
-        title.innerText = this.title;
+        title.innerHTML = this.title;
         var description = createDivElementByClassName(element, "card-selection-description");
-        description.innerText = this.description;
+        description.innerHTML = this.description;
         if (!this.checkFunction(parent)) {
             element.classList.add("card-selection-disabled");
         }
         element.addEventListener("click", function () {
+            if (_this.confirm) {
+                if (!confirm("你确定你已经通过流程图得到了答案，且你只是来验证答案是否正确的吗？")) {
+                    return;
+                }
+            }
             if (_this.checkFunction(parent)) {
                 parent.jump(_this.targetId, _this.delta);
             }
@@ -129,6 +135,7 @@ var NodeType;
     NodeType[NodeType["normalNode"] = 0] = "normalNode";
     NodeType[NodeType["winNode"] = 1] = "winNode";
     NodeType[NodeType["loseNode"] = 2] = "loseNode";
+    NodeType[NodeType["importantNodeBegin"] = 3] = "importantNodeBegin";
 })(NodeType || (NodeType = {}));
 var GameNode = /** @class */ (function () {
     function GameNode(id, title, selections, description, nodeType) {
@@ -139,8 +146,14 @@ var GameNode = /** @class */ (function () {
         this.description = description !== null && description !== void 0 ? description : "";
     }
     GameNode.prototype.display = function (container) {
-        container.title.innerText = this.title;
-        container.description.innerText = this.description;
+        container.title.innerHTML = this.title;
+        container.description.innerHTML = this.description;
+        if (this.nodeType == NodeType.importantNodeBegin) {
+            container.container.classList.add("card-style-important");
+        }
+        else {
+            container.container.classList.remove("card-style-important");
+        }
         this.selections.forEach(function (selection) {
             selection.createElement(container);
         });
@@ -149,8 +162,8 @@ var GameNode = /** @class */ (function () {
 }());
 var defaultNodes = [
     new GameNode("", "答案检验器", [
-        new GameSelection("main", "那就开始吧！")
-    ], "游戏本体由玛丽的对头开发，本页面仅作为思路检验用。请先在图片上自己走一遍流程，再来到网页验证你的结果~❤"),
+        new GameSelection("main", "那就开始吧！<span style='color: #f99; font-weight: 900; font-size: 36px'>（请确保你已经看流程图得到答案了！！！）</span>", function (_) { return true; }, undefined, undefined, true)
+    ], "游戏本体由玛丽的对头开发，本页面仅作为思路检验用。<span style='color: #f44; font-weight: 900; font-size: 36px'>请先在图片上自己走一遍流程，得到了答案以后</span>，再来到网页验证你的结果。图片请看：<a href='https://www.bilibili.com/opus/864580129344454676'>玛对动态</a>", NodeType.importantNodeBegin),
     new GameNode("main", "密室！", [
         new GameSelection("east", "选择：东"),
         new GameSelection("south", "选择：南"),
