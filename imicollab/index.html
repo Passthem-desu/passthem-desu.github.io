@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全都是我的模仿</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js"></script>
+    <script>
+        var workLiner;
+        var imitatorLiner;
+        window.addEventListener("load", () => {
+            workLiner = new LinerManager(document.getElementById("line1"));
+            imitatorLiner = new LinerManager(document.getElementById("line2"));
+
+            function updateFinalResult() {
+                document.getElementById("result").innerText = ComputeFinalResult(workLiner, imitatorLiner);
+            }
+
+            workLiner.addChangeListener(updateFinalResult);
+            imitatorLiner.addChangeListener(updateFinalResult);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="app-outer">
+        <div class="app">
+            <h1><span class="subeimi-icon">全都是我的模仿。</span>&ensp;活动猜测征集</h1>
+            <p>今天（8 月 20 日），<span class="subeimi-icon">全都是我的模仿。</span>&ensp;合作终于落下了帷幕。现在，轮到你猜测的时间了。</p>
+            <p>注意：建议你先在草稿本 / 记事本中先写好你的猜测，再填入这里的数据表。</p>
+            <p>建议在电脑打开……手机视图我真的不会写</p>
+            <h1>Part 1 - 你认为哪个作品模仿的是谁呢？</h1>
+            <p>因为……我真的不会写网页交互了，所以还是请看一下这里的操作方式吧，就是点击左边和右边的两个方块，就可以连线或者取消连线。</p>
+            <div class="line-outer" id="line1">
+                <div class="liner-blocks liner-left">
+                    <div class="line-block">1A - last band</div>
+                    <div class="line-block">1B - 请问有内脏吗☆</div>
+                    <div class="line-block">2A - USUAL MINECRAFT</div>
+                    <div class="line-block">2B - A Sardine Grows from the Soil YTPMV</div>
+                    <div class="line-block">3A - 金色的水飞沫</div>
+                    <div class="line-block">3B - 孤独的水飞沫</div>
+                    <div class="line-block">4A - dans la rue</div>
+                    <div class="line-block">4B - cheeky mazoku fast food</div>
+                    <div class="line-block">5A - 精神电棍</div>
+                    <div class="line-block">5B - Gun情劣等选手</div>
+                    <div class="line-block">6A - 兽又里</div>
+                    <div class="line-block">6B - 【合作单品】素材核心是东方</div>
+                    <div class="line-block">7A - 今年也要以「下雪了，圣诞快乐」为目标加油！！</div>
+                    <div class="line-block">7B - 水力发电</div>
+                    <div class="line-block">8A - まにまに</div>
+                    <div class="line-block">8B - 光阴的故事</div>
+                    <div class="line-block">8C - 晶结的终远之都</div>
+                </div>
+                <div class="lines"></div>
+                <div class="liner-blocks liner-right">
+                    <div class="line-block">AlphaQX</div>
+                    <div class="line-block">ARounder_</div>
+                    <div class="line-block">kral</div>
+                    <div class="line-block">NIWANGO公司</div>
+                    <div class="line-block">noruneru</div>
+                    <div class="line-block">Passthem</div>
+                    <div class="line-block">SHBRX</div>
+                    <div class="line-block">tzh654321</div>
+                    <div class="line-block">ZhenXea</div>
+                    <div class="line-block">ヤツメ穴</div>
+                    <div class="line-block">四季映姬</div>
+                    <div class="line-block">心水湛清</div>
+                    <div class="line-block">榆木华</div>
+                    <div class="line-block">浪涛I2A</div>
+                    <div class="line-block">私绫伍</div>
+                    <div class="line-block">赤松茸莳萝</div>
+                    <div class="line-block">驹草JX</div>
+                </div>
+            </div>
+            <h1>Part 2 - 你认为是谁模仿谁呢</h1>
+            <div class="line-outer" id="line2">
+                <div class="liner-blocks liner-left">
+                    <div class="line-block">AlphaQX</div>
+                    <div class="line-block">ARounder_</div>
+                    <div class="line-block">kral</div>
+                    <div class="line-block">NIWANGO公司</div>
+                    <div class="line-block">noruneru</div>
+                    <div class="line-block">Passthem</div>
+                    <div class="line-block">SHBRX</div>
+                    <div class="line-block">tzh654321</div>
+                    <div class="line-block">ZhenXea</div>
+                    <div class="line-block">ヤツメ穴</div>
+                    <div class="line-block">四季映姬</div>
+                    <div class="line-block">心水湛清</div>
+                    <div class="line-block">榆木华</div>
+                    <div class="line-block">浪涛I2A</div>
+                    <div class="line-block">私绫伍</div>
+                    <div class="line-block">赤松茸莳萝</div>
+                    <div class="line-block">驹草JX</div>
+                </div>
+                <div class="lines"></div>
+                <div class="liner-blocks liner-right">
+                    <div class="line-block">AlphaQX</div>
+                    <div class="line-block">ARounder_</div>
+                    <div class="line-block">kral</div>
+                    <div class="line-block">NIWANGO公司</div>
+                    <div class="line-block">noruneru</div>
+                    <div class="line-block">Passthem</div>
+                    <div class="line-block">SHBRX</div>
+                    <div class="line-block">tzh654321</div>
+                    <div class="line-block">ZhenXea</div>
+                    <div class="line-block">ヤツメ穴</div>
+                    <div class="line-block">四季映姬</div>
+                    <div class="line-block">心水湛清</div>
+                    <div class="line-block">榆木华</div>
+                    <div class="line-block">浪涛I2A</div>
+                    <div class="line-block">私绫伍</div>
+                    <div class="line-block">赤松茸莳萝</div>
+                    <div class="line-block">驹草JX</div>
+                </div>
+            </div>
+            <h1>Part 3 - 请复制你的神秘代码，并提交到问卷中</h1>
+            <p>你的神秘代码：</p>
+            <div class="num-container" id="result">0</div>
+        </div>
+    </div>
+</body>
+
+</html>

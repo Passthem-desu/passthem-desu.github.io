@@ -1,0 +1,129 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  body {
+    background-color: #666;
+  }
+}
+
+.main-container {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-rows: 1fr 1fr;
+}
+@media (min-width: 1024px) {
+  .main-container {
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 1fr;
+    width: 80vw;
+    height: 90vh;
+    margin: 5vh 10vw;
+    background-color: #fafafa;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1333333333);
+  }
+}
+.main-container.card-style-important .card .selection-container {
+  grid-template-columns: 1fr;
+}
+.main-container.card-style-important .card .selection-container .card-selection {
+  background-color: rgb(165, 40, 40);
+}
+.main-container.card-style-important .card .selection-container .card-selection:hover {
+  background-color: rgb(164, 58, 58);
+}
+.main-container .card {
+  padding: 20px;
+}
+.main-container .card .card-title {
+  user-select: none;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 30px;
+}
+.main-container .card .card-description {
+  color: #555;
+  margin: 10px;
+}
+.main-container .card .selection-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px;
+}
+.main-container .card .selection-container .card-selection {
+  padding: 12px 20px;
+  background-color: rgb(40, 107, 165);
+  color: white;
+  margin: 10px 30px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+.main-container .card .selection-container .card-selection:hover {
+  background-color: rgb(58, 115, 164);
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1333333333);
+}
+.main-container .card .selection-container .card-selection.card-selection-disabled {
+  background-color: rgb(93, 115, 137);
+  cursor: not-allowed;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  color: #ccc;
+}
+.main-container .card .selection-container .card-selection.card-selection-disabled .card-selection-description {
+  color: #aaa;
+}
+.main-container .card .selection-container .card-selection .card-selection-description {
+  font-size: 12px;
+  color: #ddd;
+  margin-top: 3px;
+  margin-left: 6px;
+}
+.main-container .control-panel {
+  background-color: #f2f2f2;
+}
+@media (min-width: 1024px) {
+  .main-container .control-panel {
+    border-radius: 20px;
+    padding: 20px 0;
+  }
+}
+.main-container .control-panel .control-panel-button {
+  background-color: rgb(232, 157, 157);
+  color: rgb(150, 12, 12);
+  text-align: center;
+  margin: 20px 40px;
+  padding: 20px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  cursor: pointer;
+}
+.main-container .control-panel .control-panel-button:hover {
+  background-color: rgb(231, 173, 173);
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1333333333);
+}
+.main-container .control-panel .control-panel-list {
+  margin: 40px;
+  background-color: white;
+  padding: 13px 0px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.0666666667);
+}
+.main-container .control-panel .control-panel-list::before {
+  content: "物品栏";
+  padding: 10px 20px;
+  display: block;
+  font-size: larger;
+}
+.main-container .control-panel .control-panel-list .control-panel-list-element {
+  padding: 5px 40px;
+  user-select: none;
+  color: #666;
+}
+.main-container .control-panel .control-panel-list .control-panel-list-element:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+/*# sourceMappingURL=style.css.map */

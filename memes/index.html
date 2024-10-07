@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摩拳擦掌准备……</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .main {
+            margin: auto;
+            max-width: 1244px;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: rgb(213, 213, 213);
+            font-weight: normal;
+            font-size: 42px;
+        }
+
+        * {
+            user-select: none;
+            font-family: 'HarmonyOS sans SC';
+        }
+
+        .content-editable {
+            background-color: black;
+            transition: background-color ease 0.1s, color ease 0.1s;
+            outline: none;
+            user-select: text;
+        }
+
+        .content-editable:hover {
+            background-color: #222;
+            color: #ffd;
+        }
+
+        .user-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: 200px 1fr;
+        }
+
+        .user-image {
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+            background-position: 50% 50%;
+            grid-column: 1;
+            grid-row: 1;
+            background-color: #111;
+            cursor: pointer;
+        }
+
+        .user-name {
+            grid-column: 1;
+            grid-row: 2;
+            text-align: center;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .user-description {
+            grid-column: 2;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            font-size: 24px;
+            line-height: 1.5em;
+            margin: 0 20px;
+        }
+
+        .wide-button {
+            text-align: center;
+            opacity: 0;
+            transition: opacity ease 0.3s;
+            padding: 20px;
+            background-color: #222;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .wide-button:hover {
+            opacity: 1;
+        }
+
+        .remove-button {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            color: red;
+            background-color: #311;
+        }
+
+        .wide-button-set-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    </style>
+
+    <script>
+        function registerChangeBackgroundImage(element, defaultImage) {
+            element.style.backgroundImage = `url('${defaultImage}')`;
+
+            element.addEventListener("click", () => {
+                let askImageElement = document.createElement("input");
+                askImageElement.type = "file";
+                askImageElement.accept = "image/*";
+                askImageElement.addEventListener("change", evt => {
+                    if (evt.target.files[0]) {
+                        let fileReader = new FileReader();
+                        fileReader.onload = () => {
+                            element.style.backgroundImage = `url('${fileReader.result}')`;
+                        };
+                        fileReader.readAsDataURL(evt.target.files[0]);
+                    }
+                });
+                askImageElement.click();
+            });
+        }
+
+        function registerChangeUsername(element) {
+            function adjustFontSize() {
+                let fontSize = 32;
+                element.style.fontSize = fontSize + "px";
+
+                while (element.children[0].scrollWidth > element.clientWidth && fontSize > 1) {
+                    fontSize *= 0.9;
+                    element.style.fontSize = fontSize + "px";
+                }
+            }
+
+            element.addEventListener("input", adjustFontSize);
+            adjustFontSize();
+        }
+
+        function registerRemoveButton(parent, button) {
+            button.addEventListener("click", () => {
+                parent.remove();
+            });
+        }
+
+        function createUserElement(data) {
+            data ??= {
+                "name": "用户名",
+                "pic": "./sgts.png",
+                "desc": "-请点击这里编辑内容",
+            };
+
+            let card = document.createElement("div");
+            card.classList.add("user-card");
+
+            let image = document.createElement("div");
+            image.classList.add("user-image");
+            registerChangeBackgroundImage(image, data.pic);
+            card.appendChild(image);
+
+            let name = document.createElement("div");
+            let nameInner = document.createElement("div");
+            nameInner.contentEditable = true;
+            nameInner.classList.add("user-name-inner");
+            nameInner.classList.add("content-editable");
+            nameInner.innerText = data.name;
+            name.appendChild(nameInner);
+            name.classList.add("user-name");
+            card.appendChild(name);
+            registerChangeUsername(name);
+
+            var description = document.createElement('div');
+            description.classList.add('user-description');
+            description.classList.add('content-editable');
+            description.contentEditable = true;
+            description.innerText = data.desc;
+            card.appendChild(description);
+
+            var removeButton = document.createElement('div');
+            removeButton.classList.add("wide-button");
+            removeButton.classList.add("remove-button");
+            removeButton.innerText = '删除这个对手';
+            card.appendChild(removeButton);
+            registerRemoveButton(card, removeButton);
+
+            return card;
+        }
+
+        function getImageFromElement(element) {
+            let raw = element.style.backgroundImage;
+
+            return raw.substring(5, raw.length - 2)
+        }
+
+        function readDataFromContent() {
+            let data = {
+                title: document.getElementById("title").innerText,
+                myimage: getImageFromElement(document.getElementById("me")),
+                mydesc: document.getElementById("my-description").innerText,
+                myname: document.getElementById("my-name").innerText,
+                data: []
+            };
+
+            document.querySelectorAll("#main-list>*").forEach(card => {
+                data.data.push({
+                    name: card.querySelector(".user-name-inner").innerText,
+                    pic: getImageFromElement(card.querySelector(".user-image")),
+                    desc: card.querySelector(".user-description").innerText
+                });
+            });
+
+            return data;
+        }
+
+        function loadContentFromData(data) {
+            const mainList = document.getElementById("main-list");
+
+            mainList.innerHTML = "";
+
+            data.data.forEach((user) => {
+                const card = createUserElement(user);
+                mainList.appendChild(card);
+            });
+
+            document.getElementById("title").innerText = data.title;
+            document.getElementById("me").style.backgroundImage = `url("${data.myimage}")`;
+            document.getElementById("my-description").innerText = data.mydesc;
+            document.getElementById("my-name").innerText = data.myname;
+        }
+
+        function saveDataToLocalStorage() {
+            const jsonData = JSON.stringify(readDataFromContent());
+            localStorage.setItem("userData", jsonData);
+        }
+
+        window.addEventListener("load", () => {
+            registerChangeBackgroundImage(document.getElementById("me"), "./me.png");
+            registerChangeBackgroundImage(document.getElementById("test-image"), "./sgts.png");
+
+            const savedData = localStorage.getItem("userData");
+            let flag = false;
+
+            if (savedData) {
+                try {
+                    loadContentFromData(JSON.parse(savedData));
+                    flag = true;
+                } catch (error) {
+
+                }
+            }
+
+            if (!flag) {
+                saveDataToLocalStorage();
+
+                document.querySelectorAll(".user-name").forEach(registerChangeUsername);
+
+                registerRemoveButton(document.getElementById("test-card"), document.getElementById("test-button"));
+            } else {
+                registerChangeUsername(document.getElementById("my-name-outer"));
+            }
+
+            setInterval(() => {
+                saveDataToLocalStorage();
+            }, 1000);
+
+            document.getElementById("new-button").addEventListener("click", () => {
+                document.getElementById("main-list").appendChild(createUserElement());
+            });
+
+            /* 非常好代码，来自 ChatGPT，完美符合我的需求 */
+            document.getElementById("save-button").addEventListener("click", () => {
+                const data = readDataFromContent();
+                const jsonData = JSON.stringify(data);
+                const blob = new Blob([jsonData], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "暂存文件.otmeme";
+                link.click();
+            });
+
+            document.getElementById("load-button").addEventListener("click", () => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = ".otmeme";
+                input.onchange = event => {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const content = e.target.result;
+                        const jsonData = JSON.parse(content);
+                        loadContentFromData(jsonData);
+                    };
+                    reader.readAsText(file);
+                };
+                input.click();
+            });
+        });
+
+        window.addEventListener("beforeunload", function (event) {
+            saveDataToLocalStorage();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <h1>
+            <span style="font-size: larger; font-weight: bolder;">摩拳擦掌</span>准备<span contenteditable="true"
+                class="content-editable" id="title">参加新举办的音MAD 活动</span>的你 Be like——
+        </h1>
+        <div class="user-card-list">
+            <div class="user-card">
+                <div class="user-image" id="me"></div>
+                <div class="user-name" id="my-name-outer">
+                    <div class="user-name-inner content-editable" contenteditable="true" id="my-name">你</div>
+                </div>
+                <div class="user-description content-editable" contenteditable="true" id="my-description">
+                    -通过某个合作接触的音mad，看见有活动就来了<br />
+                    -看了很多非音mad教程，不知道怎么做音mad<br />
+                    -软件很卡，会用的功能不超过五个<br />
+                    -更喜欢看音mad而不是上手做，却也没看过多少音mad<br />
+                    -真的在套midi<br />
+                    -发过几个作品，评论区除了复读没有其他内容<br />
+                    -大家都说活动主题好做，但自己无法做出来
+                </div>
+            </div>
+        </div>
+        <h1>你的对手：</h1>
+        <div class="user-card-list" id="main-list">
+            <div class="user-card" id="test-card">
+                <div class="user-image" id="test-image"></div>
+                <div class="user-name">
+                    <div class="user-name-inner content-editable" contenteditable="true">用户名</div>
+                </div>
+                <div class="user-description content-editable" contenteditable="true">
+                    -请点击这里编辑内容
+                </div>
+                <div class="wide-button remove-button" id="test-button">删除这个对手</div>
+            </div>
+        </div>
+        <div class="wide-button" id="new-button">添加新的对手</div>
+        <div class="wide-button-set-2">
+            <div class="wide-button" id="load-button">加载暂存文件</div>
+            <div class="wide-button" id="save-button">保存暂存文件</div>
+        </div>
+    </div>
+</body>
+
+</html>
